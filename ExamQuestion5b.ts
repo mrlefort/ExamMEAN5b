@@ -124,44 +124,44 @@
 // dad.name = "Man with the 3-piece suit"; // error! name is readonly.
 
 
-// // ------------------------abstract-----------------------------
-// abstract class Animal {
-//     static origin : string = "hello"
-//     constructor(protected name: string) {
-//     }
-//
-//     //absctract gør at man er nødt til at implementere den abstrakte metode i den klasse som arver.
-//     abstract makeSound(input: string): string;
-//
-//     move(meters) {
-//         console.log(this.name + " moved " + meters + "m.");
-//     }
-// }
-//
-// class Snake extends Animal {
-//     constructor(name: string) {
-//         super(name);
-//     }
-//
-//     makeSound(input: string): string {
-//         return "sssss" + input;
-//     }
-//
-//     move(m) {
-//
-//         console.log("Slithering...");
-//         super.move(m);
-//     }
-// }
-// var c = new Snake("snakey snake")
-// console.log(c.makeSound("Buddy"))
-// c.move(10)
+// ------------------------abstract-----------------------------
+abstract class Animal {
+    static origin : string = "hello"
+    constructor(protected name: string) {
+    }
 
+    //absctract gør at man er nødt til at implementere den abstrakte metode i den klasse som arver.
+    abstract makeSound(input: string): string;
+
+    move(meters) {
+        console.log(this.name + " moved " + meters + "m.");
+    }
+}
+
+class Snake extends Animal {
+    constructor(name: string) {
+        super(name);
+    }
+
+    makeSound(input: string): string {
+        return "sssss" + input;
+    }
+
+    move(m) {
+
+        console.log("Slithering...");
+        super.move(m);
+    }
+}
+var c = new Snake("snakey snake")
+console.log(c.makeSound("Buddy"))
+c.move(10)
+console.log(Snake.origin)
 
 
 
 // ------------------------static ---------------------------
-//??!?
+//Ligesom java.
 
 
 

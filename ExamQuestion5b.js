@@ -1,6 +1,11 @@
 /**
  * Created by mrlef on 1/9/2017.
  */
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 //Question 1 - Explain the two strategies for improving JavaScript: ES6 (es2005) + ES7, versus Typescript. -------------
 // What does it require to use these technologies: In our backend with Node, and in (many different) Browsers.
 /*
@@ -96,40 +101,37 @@
 // }
 // let dad = new Octopus("Man with the 8 strong legs");
 // dad.name = "Man with the 3-piece suit"; // error! name is readonly.
-// // ------------------------abstract-----------------------------
-// abstract class Animal {
-//     static origin : string = "hello"
-//     constructor(protected name: string) {
-//     }
-//
-//     //absctract gør at man er nødt til at implementere den abstrakte metode i den klasse som arver.
-//     abstract makeSound(input: string): string;
-//
-//     move(meters) {
-//         console.log(this.name + " moved " + meters + "m.");
-//     }
-// }
-//
-// class Snake extends Animal {
-//     constructor(name: string) {
-//         super(name);
-//     }
-//
-//     makeSound(input: string): string {
-//         return "sssss" + input;
-//     }
-//
-//     move(m) {
-//
-//         console.log("Slithering...");
-//         super.move(m);
-//     }
-// }
-// var c = new Snake("snakey snake")
-// console.log(c.makeSound("Buddy"))
-// c.move(10)
+// ------------------------abstract-----------------------------
+var Animal = (function () {
+    function Animal(name) {
+        this.name = name;
+    }
+    Animal.prototype.move = function (meters) {
+        console.log(this.name + " moved " + meters + "m.");
+    };
+    Animal.origin = "hello";
+    return Animal;
+}());
+var Snake = (function (_super) {
+    __extends(Snake, _super);
+    function Snake(name) {
+        _super.call(this, name);
+    }
+    Snake.prototype.makeSound = function (input) {
+        return "sssss" + input;
+    };
+    Snake.prototype.move = function (m) {
+        console.log("Slithering...");
+        _super.prototype.move.call(this, m);
+    };
+    return Snake;
+}(Animal));
+var c = new Snake("snakey snake");
+console.log(c.makeSound("Buddy"));
+c.move(10);
+console.log(Snake.origin);
 // ------------------------static ---------------------------
-//??!?
+//Ligesom java.
 //Question 5 - Explain TypeScript Generics, the problems they solve, and provide examples of your ----------------------
 // own generic functions and classes.
 // let numberList: Array<number> = [1, 2, 3]; // man kan ikke skrive en string her
